@@ -8,8 +8,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class FoodDeliveryApplication {
 
 	public static void main(String[] args) {
-//		User u = new User("Chhavi","Srivastava");
-//		System.out.println(u.toString());
 		SpringApplication.run(FoodDeliveryApplication.class, args);
 	}
 
