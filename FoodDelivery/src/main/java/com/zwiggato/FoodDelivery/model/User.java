@@ -1,15 +1,15 @@
 package com.zwiggato.FoodDelivery.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import org.hibernate.annotations.GenericGenerator;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -26,10 +26,12 @@ public class User {
     @NotNull
     private String firstName;
     private String lastName;
-    private String address;
     private String password;
     @NotNull
     private String contact;
 //    private List<Order> orderHistory;
     private String role;
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true,fetch = FetchType.LAZY)
+    private List<Address> address = new ArrayList<>();
+
 }

@@ -32,10 +32,10 @@ public class UserController {
     }
 
     @PostMapping("findByContact")
-    public ResponseEntity<User> findUserByContact(@RequestBody @Valid User user){
+    public ResponseEntity<UserModel> findUserByContact(@RequestBody @Valid User user){
         Optional<User> userResponse = userService.getUserbyContact(user);
         if(userResponse.isPresent()){
-            return ResponseEntity.ok(userResponse.get());
+            return ResponseEntity.ok(UserModel.getUserModel(userResponse.get()));
         }
         return ResponseEntity.badRequest().body(null);
     }
