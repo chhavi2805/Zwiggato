@@ -4,26 +4,28 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 import org.hibernate.annotations.GenericGenerator;
-import org.springframework.context.annotation.Lazy;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
 @Table(name = "address")
+@ToString(exclude = {"user"})
 public class Address {
     @Id
     @GeneratedValue(generator = "add-id-generator")
     @GenericGenerator(name = "add-id-generator", strategy = "com.zwiggato.FoodDelivery.utils.AddressIdGenerator")
-
     private String addId;
+
     private String name;
     private String line1;
     private String line2;
     private String city;
     private String pincode;
-    @ManyToOne(fetch = FetchType.LAZY)
+
+    @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
 }

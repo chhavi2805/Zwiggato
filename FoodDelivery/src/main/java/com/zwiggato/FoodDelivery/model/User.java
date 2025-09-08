@@ -5,7 +5,7 @@ import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
+import lombok.ToString;
 import org.hibernate.annotations.GenericGenerator;
 
 import java.util.ArrayList;
@@ -16,6 +16,7 @@ import java.util.List;
 @NoArgsConstructor
 @Entity
 @Table(name = "users")
+@ToString(exclude = {"address"})
 public class User {
 
     @Id
@@ -31,7 +32,8 @@ public class User {
     private String contact;
 //    private List<Order> orderHistory;
     private String role;
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true,fetch = FetchType.LAZY)
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     private List<Address> address = new ArrayList<>();
 
 }
